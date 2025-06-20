@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Polaris: La Ruta del IEEGL hacia el Liderazgo Mundial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .section-title {
+            font-weight: 900;
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            text-align: center;
+            color: #004AAD;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#004AAD] text-white text-center py-16 px-4">
+        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider">Proyecto Polaris</h1>
+        <p class="mt-4 text-xl md:text-2xl max-w-3xl mx-auto text-[#99D1EE]">La ruta data-driven del IEEGL para convertirse en el referente mundial de emprendimiento</p>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 md:py-16">
+
+        <section id="gap" class="mb-20">
+            <h2 class="section-title">La Brecha Hacia el Liderazgo</h2>
+            <p class="section-subtitle">Los líderes mundiales como Stanford y MIT no solo tienen excelentes programas, sino que miden su éxito en resultados tangibles. El Proyecto Polaris se enfoca en cerrar esta "brecha de datos", pasando de medir la actividad a optimizar el impacto.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                <div class="kpi-card bg-white p-6">
+                    <p class="text-5xl font-black text-[#0062D6]">>$26B</p>
+                    <p class="mt-2 font-bold text-lg text-[#004AAD]">Valoración de Startups</p>
+                    <p class="mt-1 text-sm text-gray-600">Es el valor combinado de las empresas apoyadas por StartX de Stanford, un modelo de creación de valor masivo.</p>
+                </div>
+                <div class="kpi-card bg-white p-6">
+                    <p class="text-5xl font-black text-[#0062D6]">4.6M</p>
+                    <p class="mt-2 font-bold text-lg text-[#004AAD]">Empleos Creados</p>
+                    <p class="mt-1 text-sm text-gray-600">Es el impacto laboral de las empresas fundadas por exalumnos del MIT, una métrica de resultado clave.</p>
+                </div>
+                <div class="kpi-card bg-[#007BFF] text-white p-6">
+                    <p class="text-5xl font-black">#1</p>
+                    <p class="mt-2 font-bold text-lg">El Objetivo</p>
+                    <p class="mt-1 text-sm text-blue-100">Pasar de métricas de entrada (cursos) a métricas de salida (capital, empleos, supervivencia) para alcanzar el liderazgo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="kpis" class="mb-20">
+            <h2 class="section-title">El Tablero del Futuro: KPIs Estratégicos</h2>
+            <p class="section-subtitle">El Balanced Scorecard traduce la visión en acción. Estos son algunos de los indicadores clave que guiarán la transformación del IEEGL, mostrando el estado actual frente a la meta a 3 años.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="kpi-card">
+                    <h3 class="font-bold text-lg text-center text-[#004AAD] mb-4">Capital Recaudado por Portafolio</h3>
+                    <div class="chart-container"><canvas id="capitalChart"></canvas></div>
+                    <p class="text-sm text-gray-600 mt-4 text-center">Multiplicar por 10 el capital levantado es un indicador directo del valor y la escalabilidad de las startups apoyadas.</p>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="font-bold text-lg text-center text-[#004AAD] mb-4">Tasa de Supervivencia de Startups</h3>
+                    <div class="chart-container"><canvas id="survivalChart"></canvas></div>
+                    <p class="text-sm text-gray-600 mt-4 text-center">Aumentar la longevidad de las empresas a 5 años, demostrando la solidez de los modelos de negocio incubados.</p>
+                </div>
+                <div class="kpi-card">
+                     <h3 class="font-bold text-lg text-center text-[#004AAD] mb-4">Net Promoter Score (NPS)</h3>
+                    <div class="chart-container"><canvas id="npsChart"></canvas></div>
+                    <p class="text-sm text-gray-600 mt-4 text-center">Medir y mejorar la satisfacción y lealtad de emprendedores y mentores para crear una comunidad de clase mundial.</p>
+                </div>
+                 <div class="kpi-card">
+                    <h3 class="font-bold text-lg text-center text-[#004AAD] mb-4">Reducción Ciclo de Admisión</h3>
+                     <div class="flex justify-around items-center h-full">
+                        <div class="text-center">
+                            <p class="text-6xl font-black text-gray-400">30</p>
+                            <p class="font-bold text-gray-500">Días (Actual)</p>
+                        </div>
+                        <div class="text-5xl font-black text-[#007BFF]">&rarr;</div>
+                        <div class="text-center">
+                            <p class="text-6xl font-black text-[#0062D6]">7</p>
+                            <p class="font-bold text-[#004AAD]">Días (Meta)</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4 text-center">Automatizar el proceso de admisión para reducir la fricción y acelerar el ingreso del talento.</p>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="font-bold text-lg text-center text-[#004AAD] mb-4">Madurez de Procesos (CMMI)</h3>
+                    <div class="chart-container"><canvas id="cmmiChart"></canvas></div>
+                    <p class="text-sm text-gray-600 mt-4 text-center">Estandarizar y optimizar los servicios clave (admisión, mentoría, etc.) para pasar de una gestión reactiva a una excelencia definida y predecible.</p>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="font-bold text-lg text-center text-[#004AAD] mb-4">Agilidad en Creación de Programas</h3>
+                     <div class="flex justify-around items-center h-full">
+                        <div class="text-center">
+                            <p class="text-6xl font-black text-gray-400">6</p>
+                            <p class="font-bold text-gray-500">Meses (Actual)</p>
+                        </div>
+                        <div class="text-5xl font-black text-[#007BFF]">&rarr;</div>
+                        <div class="text-center">
+                            <p class="text-6xl font-black text-[#0062D6]">2</p>
+                            <p class="font-bold text-[#004AAD]">Meses (Meta)</p>
+                        </div>
+                    </div>
+                     <p class="text-sm text-gray-600 mt-4 text-center">Usar herramientas de IA para acelerar la investigación y el diseño, respondiendo más rápido a las necesidades del mercado.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="mb-20">
+            <h2 class="section-title">El Sistema Nervioso Central</h2>
+            <p class="section-subtitle">Una arquitectura tecnológica unificada, auto-alojada y open-source es el motor que impulsa la estrategia. Este sistema integra automatización, IA y analítica para crear un ciclo de mejora continua.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="kpi-card">
+                    <h3 class="font-bold text-lg text-[#004AAD] mb-4">Pipeline de MLOps: De la Idea a la Producción</h3>
+                    <p class="text-sm text-gray-600 mb-6">Un flujo de trabajo automatizado con GitLab CI/CD asegura que los nuevos modelos de IA se desplieguen de forma rápida, fiable y repetible.</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-4 p-3 bg-blue-50 rounded-lg">
+                            <span class="text-2xl">💻</span>
+                            <div><strong class="text-[#0062D6]">1. Código:</strong> Se desarrolla y versiona el modelo de IA en GitLab.</div>
+                        </div>
+                         <div class="text-center text-2xl text-[#007BFF] font-bold">&darr;</div>
+                        <div class="flex items-center space-x-4 p-3 bg-blue-50 rounded-lg">
+                            <span class="text-2xl">🚀</span>
+                            <div><strong class="text-[#0062D6]">2. Construcción:</strong> El pipeline automático compila y prueba el código.</div>
+                        </div>
+                        <div class="text-center text-2xl text-[#007BFF] font-bold">&darr;</div>
+                        <div class="flex items-center space-x-4 p-3 bg-blue-50 rounded-lg">
+                            <span class="text-2xl">📦</span>
+                             <div><strong class="text-[#0062D6]">3. Contenerización:</strong> Se empaqueta el modelo y sus dependencias en un contenedor Docker.</div>
+                        </div>
+                         <div class="text-center text-2xl text-[#007BFF] font-bold">&darr;</div>
+                        <div class="flex items-center space-x-4 p-3 bg-blue-50 rounded-lg">
+                            <span class="text-2xl">☁️</span>
+                             <div><strong class="text-[#0062D6]">4. Despliegue:</strong> El contenedor se despliega en el clúster k3s sin tiempo de inactividad.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="font-bold text-lg text-[#004AAD] mb-4">El Stack Tecnológico Open Source</h3>
+                    <p class="text-sm text-gray-600 mb-6">Se priorizan herramientas auto-alojadas para máximo control, flexibilidad y rentabilidad a largo plazo.</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+                        <div class="p-3 bg-gray-100 rounded-lg"><strong class="text-[#004AAD]">n8n</strong><p class="text-xs">Automatización</p></div>
+                        <div class="p-3 bg-gray-100 rounded-lg"><strong class="text-[#004AAD]">FlowiseAI</strong><p class="text-xs">Agentes IA</p></div>
+                        <div class="p-3 bg-gray-100 rounded-lg"><strong class="text-[#004AAD]">Hugging Face</strong><p class="text-xs">Modelos IA</p></div>
+                        <div class="p-3 bg-gray-100 rounded-lg"><strong class="text-[#004AAD]">Python</strong><p class="text-xs">Análisis/ML</p></div>
+                        <div class="p-3 bg-gray-100 rounded-lg"><strong class="text-[#004AAD]">k3s</strong><p class="text-xs">Orquestación</p></div>
+                        <div class="p-3 bg-gray-100 rounded-lg"><strong class="text-[#004AAD]">GitLab</strong><p class="text-xs">MLOps</p></div>
+                        <div class="p-3 bg-gray-100 rounded-lg"><strong class="text-[#004AAD]">PostgreSQL</strong><p class="text-xs">Base de Datos</p></div>
+                        <div class="p-3 bg-gray-100 rounded-lg"><strong class="text-[#004AAD]">Prometheus</strong><p class="text-xs">Monitoreo</p></div>
+                        <div class="p-3 bg-gray-100 rounded-lg"><strong class="text-[#004AAD]">Power BI</strong><p class="text-xs">Visualización</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap">
+            <h2 class="section-title">La Hoja de Ruta a 36 Meses</h2>
+            <p class="section-subtitle">Una implementación por fases garantiza la viabilidad del proyecto, enfocándose en construir una base sólida para luego escalar la complejidad y el impacto de forma incremental.</p>
+            <div class="relative">
+                <div class="border-l-4 border-[#007BFF] absolute h-full top-0 left-1/2 -ml-px"></div>
+                <div class="space-y-12">
+                    <div class="relative">
+                        <div class="w-full flex justify-start">
+                            <div class="w-1/2 pr-8 text-right">
+                                <div class="kpi-card">
+                                    <p class="text-xs text-blue-500 font-bold">MESES 1-6</p>
+                                    <h4 class="text-xl font-bold text-[#004AAD]">Fase 1: Fundación y Victorias Rápidas</h4>
+                                    <p class="text-sm text-gray-600 mt-2">Establecer la infraestructura central en k3s y automatizar los procesos más críticos con n8n para demostrar valor inmediato.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-[#007BFF] w-6 h-6 rounded-full absolute top-1/2 -mt-3 left-1/2 -ml-3 border-4 border-white"></div>
+                    </div>
+                    <div class="relative">
+                         <div class="w-full flex justify-end">
+                            <div class="w-1/2 pl-8 text-left">
+                                <div class="kpi-card">
+                                    <p class="text-xs text-blue-500 font-bold">MESES 7-18</p>
+                                    <h4 class="text-xl font-bold text-[#004AAD]">Fase 2: Automatización Inteligente</h4>
+                                    <p class="text-sm text-gray-600 mt-2">Desplegar los primeros servicios de IA (Knowledge Bot, análisis de sentimiento) e implementar el pipeline de MLOps y los dashboards estratégicos.</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="bg-[#007BFF] w-6 h-6 rounded-full absolute top-1/2 -mt-3 left-1/2 -ml-3 border-4 border-white"></div>
+                    </div>
+                    <div class="relative">
+                        <div class="w-full flex justify-start">
+                             <div class="w-1/2 pr-8 text-right">
+                                <div class="kpi-card">
+                                    <p class="text-xs text-blue-500 font-bold">MESES 19-36</p>
+                                    <h4 class="text-xl font-bold text-[#004AAD]">Fase 3: Optimización Proactiva</h4>
+                                    <p class="text-sm text-gray-600 mt-2">Implementar analítica predictiva para anticipar riesgos, alcanzar la excelencia en procesos (CMMI Nivel 3) y consolidar el liderazgo global.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-[#007BFF] w-6 h-6 rounded-full absolute top-1/2 -mt-3 left-1/2 -ml-3 border-4 border-white"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#004AAD] text-white text-center p-6 mt-16">
+        <p>Proyecto Polaris | Instituto de Emprendimiento Eugenio Garza Lagüera</p>
+        <p class="text-xs text-[#99D1EE] mt-1">Una estrategia para redefinir el emprendimiento universitario en el siglo XXI.</p>
+    </footer>
+
+    <script>
+        const brilliantBlues = {
+            dark: '#004AAD',
+            medium: '#0062D6',
+            primary: '#007BFF',
+            light: '#4DA8DA',
+            pale: '#99D1EE',
+            gray: '#e5e7eb'
+        };
+
+        function wrapLabel(text, maxLength = 16) {
+            if (text.length <= maxLength) {
+                return text;
+            }
+            const words = text.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine.length > 0 ? ' ' : '') + word;
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#1e3a8a',
+                        font: {
+                            family: 'Inter'
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('capitalChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Actual', 'Meta (Año 3)'],
+                datasets: [{
+                    label: 'Capital Recaudado (en Millones USD)',
+                    data: [50, 500],
+                    backgroundColor: [brilliantBlues.gray, brilliantBlues.primary],
+                    borderColor: [brilliantBlues.gray, brilliantBlues.dark],
+                    borderWidth: 2
+                }]
+            },
+            options: { ...commonChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: '#1e3a8a' },
+                        grid: { color: '#e5e7eb' }
+                    },
+                    x: {
+                        ticks: { color: '#1e3a8a' },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('survivalChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Meta (65%)', 'Brecha'],
+                datasets: [{
+                    data: [65, 35],
+                    backgroundColor: [brilliantBlues.primary, brilliantBlues.gray],
+                    borderColor: ['#ffffff'],
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: { ...commonChartOptions,
+                cutout: '70%',
+                plugins: {
+                    ...commonChartOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Meta de Supervivencia a 5 años',
+                        color: '#004AAD',
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('npsChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Meta (+75)', 'Brecha'],
+                datasets: [{
+                    data: [75, 25],
+                    backgroundColor: [brilliantBlues.primary, brilliantBlues.gray],
+                     borderColor: ['#ffffff'],
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+             options: { ...commonChartOptions,
+                cutout: '70%',
+                 plugins: {
+                    ...commonChartOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Net Promoter Score Objetivo',
+                        color: '#004AAD',
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('cmmiChart'), {
+            type: 'radar',
+            data: {
+                labels: [
+                    wrapLabel('Gestión de Requisitos'),
+                    wrapLabel('Planificación de Proyectos'),
+                    wrapLabel('Monitorización y Control'),
+                    wrapLabel('Gestión de Riesgos'),
+                    wrapLabel('Análisis de Decisiones')
+                ],
+                datasets: [{
+                    label: 'Actual (Nivel 1/2)',
+                    data: [1, 2, 2, 1, 1],
+                    fill: true,
+                    backgroundColor: 'rgba(77, 168, 218, 0.2)',
+                    borderColor: brilliantBlues.light,
+                    pointBackgroundColor: brilliantBlues.light,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: brilliantBlues.light
+                }, {
+                    label: 'Meta (Nivel 3)',
+                    data: [3, 3, 3, 3, 3],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                    borderColor: brilliantBlues.primary,
+                    pointBackgroundColor: brilliantBlues.primary,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: brilliantBlues.primary
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    r: {
+                        angleLines: { color: brilliantBlues.pale },
+                        grid: { color: brilliantBlues.pale },
+                        pointLabels: {
+                             font: { size: 10, family: 'Inter' },
+                             color: '#004AAD'
+                        },
+                        ticks: {
+                            color: '#1e3a8a',
+                            backdropColor: 'rgba(255, 255, 255, 0.75)',
+                            stepSize: 1
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 3
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
